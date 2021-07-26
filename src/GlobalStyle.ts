@@ -1,4 +1,4 @@
-import {createGlobalStyle} from 'styled-components'
+import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
 
@@ -8,6 +8,8 @@ export const GlobalStyle = createGlobalStyle`
             --lightGrey: #eee;
             --medGrey: #353535;
             --darkGrey: #1c1c1c;
+            --red: #e50914;
+            --logoFont: 'Bebas Neue', cursive;
       }
 
       * {
@@ -20,4 +22,4 @@ export const GlobalStyle = createGlobalStyle`
             padding: 0;
             background: #1c1c1c;
       }
-`
+`;

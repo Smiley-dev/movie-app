@@ -1,15 +1,13 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-      position: sticky;
+      position: absolute;
       top: 0;
       left: 0;
-      height: 40px;
-      
-      background: var(--darkGrey);
-      
-      z-index: 100
-`
+      height: 50px;
+      width: 100%;
+      z-index: 100;
+`;
 
 export const Content = styled.div`
       display: flex;
@@ -19,10 +17,10 @@ export const Content = styled.div`
       margin: 0 auto;
       max-width: var(--maxWidth);
 
-      a {   
-            
-            color: var(--white);
+      a {
+            font-family: var(--logoFont);
+            font-size: 30px;
+            color: var(--red);
             text-decoration: none;
-            
       }
-`
+`;
