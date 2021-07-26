@@ -1,5 +1,6 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+
+import { AppContext } from "../../context";
 
 import { Image } from "./Thumb.style";
 type Props = {
@@ -9,11 +10,17 @@ type Props = {
 };
 
 const Thumb: React.FC<Props> = ({ poster, isFavorit, imdbID }) => {
+      const { setIsModalOpened, setSelectedMovie, isModalOpened } = useContext(AppContext);
+
+      const handleClick = () => {
+            setSelectedMovie(imdbID);
+            setIsModalOpened(true);
+            console.log(imdbID);
+            console.log(isModalOpened);
+      };
       return (
-            <div>
-                  <Link to={`/movie/${imdbID}`}>
-                        <Image src={poster} alt="movie-thumb" />
-                  </Link>
+            <div onClick={handleClick}>
+                  <Image src={poster} alt="movie-thumb" />
             </div>
       );
 };
