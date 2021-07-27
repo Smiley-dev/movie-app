@@ -7,7 +7,7 @@ type Props = {
 
 export const Wrapper = styled.div<Props>`
       height: 100vh;
-      max-height: ${({ isFull }) => (isFull ? "100vh" : "200px")};
+      max-height: ${({ isFull }) => (isFull ? "200px" : "100vh")};
       transition: max-height 0.5s ease-out;
       background-image: url(${({ image }) => image});
 `;

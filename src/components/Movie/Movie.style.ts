@@ -4,6 +4,7 @@ export const Wrapper = styled.div``;
 
 export const Content = styled.div`
       display: flex;
+      position: relative;
       max-width: var(--maxWidth);
       margin: 0 auto;
       background: rgba(0, 0, 0, 0.7);
@@ -12,6 +13,18 @@ export const Content = styled.div`
       @media screen and (max-width: 768px) {
             display: block;
             max-height: none;
+      }
+
+      .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 50px;
+            font-weight: bolder;
+            color: var(--red);
+      }
+
+      .close-modal:hover {
+            cursor: pointer;
       }
 `;
 
@@ -26,25 +39,27 @@ export const Info = styled.div`
             justify-content: flex-start;
       }
 
-      .score {
+      .details {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 35px;
-            height: 35px;
-            background: #fff;
-            color: #000;
-            font-weight: 800;
-            border-radius: 50%;
-            margin: 0;
       }
 
-      .director {
-            margin: 0 0 0 40px;
+      .ratings {
+            margin-left: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+      }
 
-            p {
-                  margin: 0;
-            }
+      .rating {
+            display: flex;
+            align-items: center;
+            width: 200px;
+            justify-content: space-between;
+            margin-bottom: 20px;
+      }
+
+      img {
+            height: 30px;
       }
 
       h1 {

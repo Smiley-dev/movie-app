@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 //Global style
 import { GlobalStyle } from "./GlobalStyle";
 
-import AppProvider, { AppContext } from "./context";
+import AppProvider from "./context";
 
 //Components
 import Home from "./components/Home/Home";
@@ -14,7 +14,6 @@ import Navbar from "./components/Navbar/Navbar";
 import Modal from "./components/Modal/Modal";
 
 const App: React.FC = () => {
-      const { isModalOpened, selectedMovie } = useContext(AppContext);
       return (
             <AppProvider>
                   <Router>
