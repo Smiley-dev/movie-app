@@ -1,11 +1,17 @@
 import React, { useState, createContext, Dispatch, SetStateAction } from "react";
 
-interface AppCotextProps {
+import { MovieDetails } from "./API";
+
+type AppCotextProps = {
       isModalOpened: boolean;
       setIsModalOpened: Dispatch<SetStateAction<boolean>>;
       selectedMovie: string;
       setSelectedMovie: Dispatch<SetStateAction<string>>;
-}
+      addMovie: (movie: MovieDetails) => void;
+      removeMovie: (imdbID: string) => void;
+      checkIfMovieIsInMyList: (imdbID: string | undefined) => boolean;
+      myList: MovieDetails[];
+};
 
 export const AppContext = createContext<AppCotextProps>({
       isModalOpened: false,
@@ -15,6 +21,28 @@ export const AppContext = createContext<AppCotextProps>({
 const AppProvider: React.FC = ({ children }) => {
       const [isModalOpened, setIsModalOpened] = useState(false);
       const [selectedMovie, setSelectedMovie] = useState("");
+      const [myList, setMyList] = useState<MovieDetails[]>([]);
+
+      //Add movie to my list
+      const addMovie = (movie: MovieDetails) => {
+            setMyList([...myList, movie]);
+            console.log(movie);
+      };
+
+      //Remove movie from my list
+      const removeMovie = (imdbID: string) => {
+            const newList = myList.filter((movie) => {
+                  return movie.imdbID !== imdbID;
+            });
+            console.log(imdbID);
+            console.log(myList);
+            setMyList(newList);
+      };
+
+      //Check if movie is in my list
+      const checkIfMovieIsInMyList = (imdbID: string | undefined) => {
+            return myList.some((movie) => movie.imdbID === imdbID);
+      };
 
       return (
             <AppContext.Provider
@@ -23,6 +51,10 @@ const AppProvider: React.FC = ({ children }) => {
                         setIsModalOpened,
                         selectedMovie,
                         setSelectedMovie,
+                        addMovie,
+                        removeMovie,
+                        checkIfMovieIsInMyList,
+                        myList,
                   }}
             >
                   {children}

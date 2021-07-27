@@ -8,4 +8,8 @@ export const Wrapper = styled.div`
             padding-left: 20px;
             font-size: 20px;
       }
+
+      input:focus {
+            border: 1px solid var(--red);
+      }
 `;

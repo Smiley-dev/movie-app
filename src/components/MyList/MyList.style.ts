@@ -1,3 +1,7 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
-export const Wrapper = styled.div``
+export const Wrapper = styled.div`
+      max-width: var(--maxWidth);
+      margin-top: 50px;
+      margin-left: auto;
+`;

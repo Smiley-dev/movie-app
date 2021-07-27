@@ -36,13 +36,13 @@ const Home: React.FC = () => {
 
       return (
             <Wrapper>
-                  <Background isFull={movies?.Search && movies?.Search.length > 0 ? true : false} image={image}>
+                  <Background isFull={movies?.Search && movies?.Search.length > 0 ? false : true} image={image}>
                         <input type="text" value={searchTerm} onChange={handleSearch} placeholder="Search movies..." />
                   </Background>
                   <Grid>
                         {movies?.Search &&
                               movies?.Search.map((movie) => {
-                                    return <Thumb poster={movie.Poster} isFavorit={false} imdbID={movie.imdbID} />;
+                                    return <Thumb key={movie.imdbID} poster={movie.Poster} isFavorit={false} imdbID={movie.imdbID} />;
                               })}
                   </Grid>
             </Wrapper>

@@ -1,11 +1,27 @@
-import React from 'react'
+import React, { useContext } from "react";
+import image from "../../assets/images/movies_background.jpg";
+import { AppContext } from "../../context";
 
-const MyList:React.FC = () => {
+import Grid from "../Grid/Grid";
+import Thumb from "../Thumb/Thumb";
+import Background from "../Background/Background";
+
+import { Wrapper } from "./MyList.style";
+
+const MyList: React.FC = () => {
+      const { myList } = useContext(AppContext);
       return (
-            <div>
-                  My List
-            </div>
-      )
-}
+            <>
+                  <Background isFull={false} image={image}></Background>
+                  <Wrapper>
+                        <Grid>
+                              {myList.map((movie) => (
+                                    <Thumb key={movie.imdbID} poster={movie.Poster} imdbID={movie.imdbID} isFavorit={false}></Thumb>
+                              ))}
+                        </Grid>
+                  </Wrapper>
+            </>
+      );
+};
 
-export default MyList
+export default MyList;

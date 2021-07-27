@@ -6,14 +6,19 @@ import { AppContext } from "../../context";
 //API
 import API, { MovieDetails } from "../../API";
 
+//Components
+import Button from "../Button/Button";
+
 //Styles
 import { Content, Info } from "./Movie.style";
 
+//Icons
 import rottenIcon from "../../assets/icons/rottenLogo.png";
 import imdbIcon from "../../assets/icons/imdbLogo.png";
 
 const Movie: React.FC = () => {
       const [movie, setMovie] = useState<MovieDetails>();
+
       const { selectedMovie, setIsModalOpened, isModalOpened } = useContext(AppContext);
 
       const ref = useRef<HTMLDivElement>();
@@ -71,6 +76,7 @@ const Movie: React.FC = () => {
                                     </div>
                               </div>
                         </div>
+                        <Button movie={movie}></Button>
                         <div className="close-modal">X</div>
                   </Info>
             </Content>

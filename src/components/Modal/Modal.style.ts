@@ -12,3 +12,8 @@ export const Wrapper = styled.div`
       justify-content: center;
       z-index: 1000;
 `;
+
+export const Content = styled.div`
+      max-height: calc(100vh - 100px);
+      overflow-y: auto;
+`;

@@ -10,13 +10,11 @@ type Props = {
 };
 
 const Thumb: React.FC<Props> = ({ poster, isFavorit, imdbID }) => {
-      const { setIsModalOpened, setSelectedMovie, isModalOpened } = useContext(AppContext);
+      const { setIsModalOpened, setSelectedMovie } = useContext(AppContext);
 
       const handleClick = () => {
             setSelectedMovie(imdbID);
             setIsModalOpened(true);
-            console.log(imdbID);
-            console.log(isModalOpened);
       };
       return (
             <div onClick={handleClick}>
