@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { MovieDetails } from "../../API";
+import { MovieDetails } from "../../types";
 
 import { Wrapper } from "./Button.style";
 

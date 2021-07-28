@@ -1,7 +1,9 @@
 import React, { useCallback, useEffect, useState } from "react";
 
 //API
-import API, { Movies, Movie } from "../../API";
+import API from "../../API";
+
+import { Movies, Movie } from "../../types";
 
 //Components
 import Grid from "../Grid/Grid";
@@ -11,7 +13,7 @@ import Background from "../Background/Background";
 //Styles
 import { Wrapper, LoadMore } from "./Home.style";
 import image from "../../assets/images/movies_background.jpg";
-import { Spinner } from "../../Spinner/Spinner.styles";
+import { Spinner } from "../Spinner/Spinner.styles";
 
 const initialState = {
       page: 0,

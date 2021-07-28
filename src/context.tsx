@@ -1,6 +1,6 @@
 import React, { useState, createContext, Dispatch, SetStateAction } from "react";
 
-import { MovieDetails } from "./API";
+import { MovieDetails } from "./types";
 
 type AppCotextProps = {
       isModalOpened: boolean;

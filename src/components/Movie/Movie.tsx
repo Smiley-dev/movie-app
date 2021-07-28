@@ -4,7 +4,9 @@ import React, { useEffect, useCallback, useState, useContext, useRef } from "rea
 import { AppContext } from "../../context";
 
 //API
-import API, { MovieDetails } from "../../API";
+import API from "../../API";
+
+import { MovieDetails } from "../../types";
 
 //Components
 import Button from "../Button/Button";
@@ -16,7 +18,7 @@ import { Content, Info } from "./Movie.style";
 import rottenIcon from "../../assets/icons/rottenLogo.png";
 import imdbIcon from "../../assets/icons/imdbLogo.png";
 import metacriticIcon from "../../assets/icons/metacritic.png";
-import Spinner from "../../Spinner/Spinner";
+import Spinner from "../Spinner/Spinner";
 
 const Movie: React.FC = () => {
       const [movie, setMovie] = useState<MovieDetails>();
