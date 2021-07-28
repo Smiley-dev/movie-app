@@ -71,36 +71,38 @@ const Movie: React.FC = () => {
                                     <h3>Actors</h3>
                                     <p>{movie?.Actors}</p>
                               </div>
-                              <div className="ratings">
-                                    <h3>Ratings</h3>
-                                    {movie?.Ratings.map((rating) => {
-                                          switch (rating.Source) {
-                                                case "Internet Movie Database":
-                                                      return (
-                                                            <div key={rating.Source} className="rating">
-                                                                  <img src={imdbIcon} alt="imdb" />
-                                                                  <p>{rating.Value}</p>
-                                                            </div>
-                                                      );
-                                                case "Rotten Tomatoes":
-                                                      return (
-                                                            <div key={rating.Source} className="rating">
-                                                                  <img src={rottenIcon} alt="RT" />
-                                                                  <p>{rating.Value}</p>
-                                                            </div>
-                                                      );
-                                                case "Metacritic":
-                                                      return (
-                                                            <div key={rating.Source} className="rating">
-                                                                  <img src={metacriticIcon} alt="MC" />
-                                                                  <p>{rating.Value}</p>
-                                                            </div>
-                                                      );
-                                                default:
-                                                      return null;
-                                          }
-                                    })}
-                              </div>
+                              {movie?.Ratings.length === 0 ? null : (
+                                    <div className="ratings">
+                                          <h3>Ratings</h3>
+                                          {movie?.Ratings.map((rating) => {
+                                                switch (rating.Source) {
+                                                      case "Internet Movie Database":
+                                                            return (
+                                                                  <div key={rating.Source} className="rating">
+                                                                        <img src={imdbIcon} alt="imdb" />
+                                                                        <p>{rating.Value}</p>
+                                                                  </div>
+                                                            );
+                                                      case "Rotten Tomatoes":
+                                                            return (
+                                                                  <div key={rating.Source} className="rating">
+                                                                        <img src={rottenIcon} alt="RT" />
+                                                                        <p>{rating.Value}</p>
+                                                                  </div>
+                                                            );
+                                                      case "Metacritic":
+                                                            return (
+                                                                  <div key={rating.Source} className="rating">
+                                                                        <img src={metacriticIcon} alt="MC" />
+                                                                        <p>{rating.Value}</p>
+                                                                  </div>
+                                                            );
+                                                      default:
+                                                            return null;
+                                                }
+                                          })}
+                                    </div>
+                              )}
                         </div>
                         <Button movie={movie!}></Button>
                         <div className="close-modal">X</div>

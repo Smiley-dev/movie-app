@@ -48,6 +48,7 @@ const Home: React.FC = () => {
 
       const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
             setSearchTerm(e.target.value);
+            setPage(1);
       };
 
       //Fetch movies initial
@@ -70,7 +71,6 @@ const Home: React.FC = () => {
                   <Background isFull={movies.Search && movies.Search.length > 0 ? false : true} image={image}>
                         <input type="text" value={searchTerm} onChange={handleSearch} placeholder="Search movies..." />
                   </Background>
-
                   {error ? (
                         <h3>No movies found</h3>
                   ) : (
@@ -80,8 +80,7 @@ const Home: React.FC = () => {
                               })}
                         </Grid>
                   )}
-
-                  {movies.Search.length < movies.totalResults && error === "" ? <LoadMore onClick={() => setIsLoadingMore(true)}>Load More</LoadMore> : null}
+                  {isLoadingMore ? <Spinner /> : movies.Search.length < movies.totalResults && error === "" ? <LoadMore onClick={() => setIsLoadingMore(true)}>Load More</LoadMore> : null}
             </Wrapper>
       );
 };
