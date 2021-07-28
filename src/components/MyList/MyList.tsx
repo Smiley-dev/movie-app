@@ -12,14 +12,16 @@ const MyList: React.FC = () => {
       const { myList } = useContext(AppContext);
       return (
             <>
-                  <Background isFull={false} image={image}></Background>
-                  <Wrapper>
-                        <Grid>
-                              {myList.map((movie) => (
-                                    <Thumb key={movie.imdbID} poster={movie.Poster} imdbID={movie.imdbID} isFavorit={false}></Thumb>
-                              ))}
-                        </Grid>
-                  </Wrapper>
+                  <Background isFull={myList.length > 0 ? false : true} image={image}></Background>
+                  {myList.length > 0 && (
+                        <Wrapper>
+                              <Grid>
+                                    {myList.map((movie) => (
+                                          <Thumb key={movie.imdbID} poster={movie.Poster} imdbID={movie.imdbID} isFavorit={false}></Thumb>
+                                    ))}
+                              </Grid>
+                        </Wrapper>
+                  )}
             </>
       );
 };

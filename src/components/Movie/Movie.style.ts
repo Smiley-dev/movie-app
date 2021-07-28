@@ -4,6 +4,7 @@ export const Content = styled.div`
       display: flex;
       position: relative;
       max-width: var(--maxWidth);
+      width: 90%;
       margin: 0 auto;
       background: rgba(0, 0, 0, 0.7);
       border-radius: 20px;

@@ -26,7 +26,6 @@ const AppProvider: React.FC = ({ children }) => {
       //Add movie to my list
       const addMovie = (movie: MovieDetails) => {
             setMyList([...myList, movie]);
-            console.log(movie);
       };
 
       //Remove movie from my list
@@ -34,8 +33,7 @@ const AppProvider: React.FC = ({ children }) => {
             const newList = myList.filter((movie) => {
                   return movie.imdbID !== imdbID;
             });
-            console.log(imdbID);
-            console.log(myList);
+
             setMyList(newList);
       };
 

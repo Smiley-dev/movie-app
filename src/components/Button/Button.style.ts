@@ -5,14 +5,20 @@ type Props = {
 };
 
 export const Wrapper = styled.button<Props>`
-      padding: 10px;
-      border-radius: 5px;
       position: absolute;
-      bottom: 0;
-      right: 0;
+      bottom: 10px;
+      right: 10px;
       border: none;
-      background-color: ${({ isFavorite }) => (isFavorite ? "var(--red)" : "var(--white)")};
-      color: ${({ isFavorite }) => (isFavorite ? "var(--white)" : "var(--red)")};
+      background: transparent;
+
+      width: 150px;
+      height: 30px;
+
+      background: transparent;
+
+      border: 2px solid ${({ isFavorite }) => (isFavorite ? "var(--red)" : "var(--lightGrey)")};
+      border-radius: 25px;
+      color: ${({ isFavorite }) => (isFavorite ? "var(--red)" : "var(--lightGrey)")};
 
       &:hover {
             cursor: pointer;

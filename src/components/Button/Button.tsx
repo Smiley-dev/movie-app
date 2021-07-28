@@ -6,11 +6,11 @@ import { Wrapper } from "./Button.style";
 import { AppContext } from "../../context";
 
 type Props = {
-      movie: MovieDetails | undefined;
+      movie: MovieDetails;
 };
 
 const Button: React.FC<Props> = ({ movie }) => {
-      const { addMovie, removeMovie, checkIfMovieIsInMyList } = useContext(AppContext);
+      const { addMovie, removeMovie, checkIfMovieIsInMyList, setIsModalOpened } = useContext(AppContext);
 
       const handleAddOrRemove = () => {
             if (!checkIfMovieIsInMyList(movie?.imdbID)) {
@@ -18,6 +18,7 @@ const Button: React.FC<Props> = ({ movie }) => {
             } else {
                   if (movie) removeMovie(movie.imdbID);
             }
+            setIsModalOpened(false);
       };
 
       return (

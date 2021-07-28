@@ -15,9 +15,12 @@ import { Content, Info } from "./Movie.style";
 //Icons
 import rottenIcon from "../../assets/icons/rottenLogo.png";
 import imdbIcon from "../../assets/icons/imdbLogo.png";
+import metacriticIcon from "../../assets/icons/metacritic.png";
+import Spinner from "../../Spinner/Spinner";
 
 const Movie: React.FC = () => {
       const [movie, setMovie] = useState<MovieDetails>();
+      const [loading, setLoading] = useState(false);
 
       const { selectedMovie, setIsModalOpened, isModalOpened } = useContext(AppContext);
 
@@ -25,8 +28,10 @@ const Movie: React.FC = () => {
 
       const fetchMovie = useCallback(async () => {
             try {
+                  setLoading(true);
                   const movie = await API.fetchMovie(selectedMovie);
                   setMovie(movie);
+                  setLoading(false);
             } catch (error) {
                   console.log(error);
             }
@@ -50,7 +55,9 @@ const Movie: React.FC = () => {
             fetchMovie();
       }, [fetchMovie, selectedMovie]);
 
-      return (
+      return loading ? (
+            <Spinner></Spinner>
+      ) : (
             <Content ref={ref as any}>
                   <img src={movie?.Poster} alt="Movie poster" />
                   <Info>
@@ -66,17 +73,36 @@ const Movie: React.FC = () => {
                               </div>
                               <div className="ratings">
                                     <h3>Ratings</h3>
-                                    <div className="rating">
-                                          <img src={imdbIcon} alt="" />
-                                          <p>{movie?.Ratings[0].Value}</p>
-                                    </div>
-                                    <div className="rating">
-                                          <img src={rottenIcon} alt="" />
-                                          <p>{movie?.Ratings[1].Value}</p>
-                                    </div>
+                                    {movie?.Ratings.map((rating) => {
+                                          switch (rating.Source) {
+                                                case "Internet Movie Database":
+                                                      return (
+                                                            <div key={rating.Source} className="rating">
+                                                                  <img src={imdbIcon} alt="imdb" />
+                                                                  <p>{rating.Value}</p>
+                                                            </div>
+                                                      );
+                                                case "Rotten Tomatoes":
+                                                      return (
+                                                            <div key={rating.Source} className="rating">
+                                                                  <img src={rottenIcon} alt="RT" />
+                                                                  <p>{rating.Value}</p>
+                                                            </div>
+                                                      );
+                                                case "Metacritic":
+                                                      return (
+                                                            <div key={rating.Source} className="rating">
+                                                                  <img src={metacriticIcon} alt="MC" />
+                                                                  <p>{rating.Value}</p>
+                                                            </div>
+                                                      );
+                                                default:
+                                                      return null;
+                                          }
+                                    })}
                               </div>
                         </div>
-                        <Button movie={movie}></Button>
+                        <Button movie={movie!}></Button>
                         <div className="close-modal">X</div>
                   </Info>
             </Content>
