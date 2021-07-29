@@ -1,10 +1,14 @@
 import React, { useContext } from "react";
 import image from "../../assets/images/movies_background.jpg";
+
+//Context
 import { AppContext } from "../../context";
 
+//Components
 import Thumb from "../Thumb/Thumb";
 import Background from "../Background/Background";
 
+//Styles
 import { Wrapper } from "./MyList.style";
 
 const MyList: React.FC = () => {

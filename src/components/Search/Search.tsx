@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState, useContext } from "react";
 
+//Context
 import { AppContext } from "../../context";
 
 //API
@@ -8,15 +9,15 @@ import API from "../../API";
 //Hooks
 import { useDebounce } from "../../hooks";
 
+//Types
 import { Movies, Movie } from "../../types";
 
 //Components
-
 import Thumb from "../Thumb/Thumb";
 import Background from "../Background/Background";
 
 //Styles
-import { Wrapper, Pages } from "./Home.style";
+import { Wrapper, Pages } from "./Search.style";
 import image from "../../assets/images/movies_background.jpg";
 
 const initialState = {
@@ -27,7 +28,7 @@ const initialState = {
       Error: "",
 };
 
-const Home: React.FC = () => {
+const Search: React.FC = () => {
       const [movies, setMovies] = useState<Movies>(initialState);
       const [searchTerm, setSearchTerm] = useState<string>("");
       const [page, setPage] = useState(1);
@@ -109,4 +110,4 @@ const Home: React.FC = () => {
       );
 };
 
-export default Home;
+export default Search;

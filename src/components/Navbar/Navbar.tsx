@@ -12,6 +12,7 @@ const Navbar: React.FC = () => {
                               to="/"
                               activeStyle={{
                                     borderBottom: "3px solid #e50914",
+                                    opacity: 1,
                               }}
                               exact
                         >
@@ -21,6 +22,8 @@ const Navbar: React.FC = () => {
                               to="/my-list"
                               activeStyle={{
                                     borderBottom: "3px solid #e50914",
+
+                                    opacity: 1,
                               }}
                               exact
                         >

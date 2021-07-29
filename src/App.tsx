@@ -7,7 +7,7 @@ import { GlobalStyle } from "./GlobalStyle";
 import AppProvider from "./context";
 
 //Components
-import Home from "./components/Home/Home";
+import Search from "./components/Search/Search";
 import MyList from "./components/MyList/MyList";
 import Movie from "./components/Movie/Movie";
 import Navbar from "./components/Navbar/Navbar";
@@ -19,7 +19,7 @@ const App: React.FC = () => {
                   <Router>
                         <Navbar></Navbar>
                         <Switch>
-                              <Route path="/" exact component={Home} />
+                              <Route path="/" exact component={Search} />
                               <Route path="/my-list" exact component={MyList} />
                               <Route render={() => <Redirect to="/" />} />
                         </Switch>

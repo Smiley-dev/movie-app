@@ -1,9 +1,13 @@
 import React, { useContext } from "react";
+
+//Context
+import { AppContext } from "../../context";
+
+//Types
 import { MovieDetails } from "../../types";
 
+//Styles
 import { Wrapper } from "./Button.style";
-
-import { AppContext } from "../../context";
 
 type Props = {
       movie: MovieDetails;

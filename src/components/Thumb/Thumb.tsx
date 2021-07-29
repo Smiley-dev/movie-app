@@ -1,11 +1,18 @@
 import React, { useContext } from "react";
-import { BsStarFill } from "react-icons/bs";
-import { AppContext } from "../../context";
-import { Movie, MovieDetails } from "../../types";
 import { useLocation } from "react-router";
+import { BsStarFill } from "react-icons/bs";
+//Context
+import { AppContext } from "../../context";
+
+//Types
+import { Movie, MovieDetails } from "../../types";
+
+//Components
 import Button from "../Button/Button";
+
 import noPoster from "../../assets/images/no-poster.jpg";
 
+//Styles
 import { Image, Star, Wrapper, Info } from "./Thumb.style";
 
 type Props = {

@@ -12,15 +12,14 @@ export const Wrapper = styled.div`
 export const Content = styled.div`
       display: flex;
       height: 100%;
-      align-items: center;
-      justify-content: space-around;
-      margin: 0 auto;
-      max-width: var(--maxWidth);
 
       a {
+            width: 50%;
+            text-align: center;
             font-family: var(--logoFont);
             font-size: 30px;
             color: var(--red);
             text-decoration: none;
+            opacity: 0.5;
       }
 `;
