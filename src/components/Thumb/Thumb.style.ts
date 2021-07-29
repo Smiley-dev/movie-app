@@ -26,6 +26,16 @@ export const Info = styled.div`
       h3 {
             font-size: 20px;
       }
+
+      @media screen and (max-width: 700px) {
+            h1 {
+                  font-size: 20px;
+            }
+
+            h3 {
+                  font-size: 15px;
+            }
+      }
 `;
 
 export const Image = styled.img`
@@ -34,6 +44,10 @@ export const Image = styled.img`
       object-fit: cover;
       border-radius: 20px;
       animation: animateThumb 0.5s;
+      max-width: 170px;
+      @media screen and (max-width: 700px) {
+            height: 150px;
+      }
 
       @keyframes animateThumb {
             from {

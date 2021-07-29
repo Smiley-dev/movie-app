@@ -55,6 +55,7 @@ const Movie: React.FC = () => {
 
       useEffect(() => {
             fetchMovie();
+            console.log(movie?.Poster);
       }, [fetchMovie, selectedMovie]);
 
       return loading ? (
@@ -68,7 +69,8 @@ const Movie: React.FC = () => {
                         </div>
                         <p>{movie?.Year}</p>
                   </Header>
-                  <img className="poster" src={movie?.Poster} alt="Movie poster" />
+                  {movie?.Poster !== "N/A" ? <img className="poster" src={movie?.Poster} alt="Movie poster" /> : null}
+
                   <Info>
                         <h3>
                               Released: <span className="detail">{movie?.Released}</span>

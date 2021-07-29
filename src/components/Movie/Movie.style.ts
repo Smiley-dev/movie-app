@@ -5,8 +5,8 @@ export const Content = styled.div`
       flex-direction: column;
       position: relative;
       max-width: var(--maxWidth);
-      width: 50%;
-      min-width: 700px;
+      width: 70%;
+
       margin: 0 auto;
       background: rgba(0, 0, 0, 0.7);
       border-radius: 20px;
@@ -15,11 +15,6 @@ export const Content = styled.div`
 
       .poster {
             width: 100%;
-      }
-
-      @media screen and (max-width: 768px) {
-            display: block;
-            max-height: none;
       }
 
       .close-modal {
@@ -41,6 +36,17 @@ export const Content = styled.div`
       .close-modal:hover {
             cursor: pointer;
       }
+
+      @media screen and (max-width: 700px) {
+            width: 80%;
+            .close-modal {
+                  height: 20px;
+                  width: 20px;
+                  font-size: 10px;
+                  top: 10px;
+                  right: 10px;
+            }
+      }
 `;
 
 export const Header = styled.div`
@@ -49,6 +55,15 @@ export const Header = styled.div`
       max-width: 80%;
       h1 {
             margin-bottom: 5px;
+      }
+
+      @media screen and (max-width: 700px) {
+            h1 {
+                  font-size: 20px;
+            }
+            p {
+                  font-size: 15px;
+            }
       }
 `;
 
@@ -59,10 +74,6 @@ export const Info = styled.div`
       .rating-directors {
             display: flex;
             justify-content: flex-start;
-      }
-
-      .details {
-            display: flex;
       }
 
       .detail {
@@ -85,13 +96,21 @@ export const Info = styled.div`
             margin-bottom: 20px;
       }
 
-      img {
-            height: 30px;
-      }
+      @media screen and (max-width: 800px) {
+            h3 {
+                  font-size: 17px;
+            }
 
-      h1 {
-            @media screen and (max-width: 768px) {
-                  font-size: var(--fontBig);
+            .detail {
+                  font-size: 15px;
+            }
+
+            p {
+                  font-size: 15px;
+            }
+
+            img {
+                  height: 30px;
             }
       }
 `;

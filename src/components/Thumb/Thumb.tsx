@@ -4,6 +4,7 @@ import { AppContext } from "../../context";
 import { Movie, MovieDetails } from "../../types";
 import { useLocation } from "react-router";
 import Button from "../Button/Button";
+import noPoster from "../../assets/images/no-poster.jpg";
 
 import { Image, Star, Wrapper, Info } from "./Thumb.style";
 
@@ -30,7 +31,7 @@ const Thumb: React.FC<Props> = ({ movie }) => {
                         <Button movie={movie as MovieDetails}></Button>
                   ) : null}
 
-                  <Image src={movie.Poster} alt="movie-thumb"></Image>
+                  <Image src={movie.Poster !== "N/A" ? movie.Poster : noPoster} alt="movie-thumb"></Image>
                   <Info>
                         <h1>{movie.Title}</h1>
                         <h3>{movie.Year}</h3>

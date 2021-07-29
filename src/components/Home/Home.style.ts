@@ -12,14 +12,29 @@ export const Wrapper = styled.div`
       input:focus {
             border: 1px solid var(--red);
       }
+
+      .error {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--red);
+      }
+
+      @media screen and (max-width: 700px) {
+            input {
+                  width: 80%;
+                  height: 40px;
+                  font-size: 18px;
+            }
+      }
 `;
 
 export const Pages = styled.div`
-      max-width: 90%;
+      width: 90%;
       max-width: var(--maxWidth);
       display: flex;
       justify-content: space-between;
       margin: auto;
+      margin-bottom: 20px;
       button {
             width: 200px;
             height: 50px;
@@ -30,5 +45,13 @@ export const Pages = styled.div`
             border-radius: 25px;
             display: block;
             cursor: pointer;
+      }
+
+      @media screen and (max-width: 500px) {
+            button {
+                  width: 100px;
+                  height: 30px;
+                  font-size: 0.8rem;
+            }
       }
 `;

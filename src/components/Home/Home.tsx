@@ -62,11 +62,12 @@ const Home: React.FC = () => {
       //Fetch movies initial
       useEffect(() => {
             if (debouncedSearch.length > 2) fetchMovies(debouncedSearch, 1);
-            if (debouncedSearch.length <= 2) setMovies(initialState);
+            if (debouncedSearch.length <= 2) {
+                  setMovies(initialState);
+                  setError("");
+            }
       }, [fetchMovies, searchTerm, setError, debouncedSearch]);
 
-      //Fetch more movies
-      //Load more movies
       const handleNextPage = () => {
             fetchMovies(debouncedSearch, page + 1);
             setPage(page + 1);
@@ -91,7 +92,7 @@ const Home: React.FC = () => {
                         <input type="text" value={searchTerm} onChange={handleSearch} placeholder="Search movies..." />
                   </Background>
                   {error ? (
-                        <h3>{error}</h3>
+                        <h3 className="error">{error}</h3>
                   ) : (
                         movies.Search.map((movie) => {
                               return <Thumb key={movie.imdbID} movie={movie} />;
@@ -101,7 +102,7 @@ const Home: React.FC = () => {
                         <Pages>
                               {page > 1 && <button onClick={handlePrevPage}>Back</button>}
                               <div></div>
-                              <button onClick={handleNextPage}>Next</button>
+                              {page * 10 <= movies.totalResults && <button onClick={handleNextPage}>Next</button>}
                         </Pages>
                   ) : null}
             </Wrapper>
