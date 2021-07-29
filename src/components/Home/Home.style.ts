@@ -16,8 +16,7 @@ export const Wrapper = styled.div`
       h3 {
             color: var(--red);
             font-size: 40px;
-            margin-top: 200px;
-            margin: auto;
+            margin-top: 100px;
       }
 `;
 

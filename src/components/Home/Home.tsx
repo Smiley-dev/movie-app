@@ -1,7 +1,12 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState, useContext } from "react";
+
+import { AppContext } from "../../context";
 
 //API
 import API from "../../API";
+
+//Hooks
+import { useDebounce } from "../../hooks";
 
 import { Movies, Movie } from "../../types";
 
@@ -13,7 +18,7 @@ import Background from "../Background/Background";
 //Styles
 import { Wrapper, LoadMore } from "./Home.style";
 import image from "../../assets/images/movies_background.jpg";
-import { Spinner } from "../Spinner/Spinner.styles";
+import Spinner from "../Spinner/Spinner";
 
 const initialState = {
       page: 0,
@@ -28,25 +33,32 @@ const Home: React.FC = () => {
       const [searchTerm, setSearchTerm] = useState<string>("");
       const [isLoadingMore, setIsLoadingMore] = useState(false);
       const [page, setPage] = useState(1);
-      const [error, setError] = useState("");
+      const { error, setError } = useContext(AppContext);
 
-      const fetchMovies = useCallback(async (search: string, page: number) => {
-            try {
-                  const movies = await API.fetchMovies(search, page);
+      const debouncedSearch = useDebounce(searchTerm, 300);
 
-                  if (movies.Response === "True") {
-                        setMovies((prevState) => ({
-                              ...movies,
-                              Search: page > 1 ? [...prevState.Search, ...movies.Search] : [...movies.Search],
-                        }));
-                        setError("");
-                  } else {
-                        setError(movies.Error);
+      const fetchMovies = useCallback(
+            async (search: string, page: number) => {
+                  try {
+                        const movies = await API.fetchMovies(search, page);
+                        if (movies.Response === "True") {
+                              setMovies((prevState) => ({
+                                    ...movies,
+                                    Search: page > 1 ? [...prevState.Search, ...movies.Search] : [...movies.Search],
+                              }));
+                              setError("");
+                        } else {
+                              console.log(movies.Error);
+                              setError(movies.Error);
+                              setMovies(initialState);
+                        }
+                  } catch (error) {
+                        setError(error.message);
+                        setMovies(initialState);
                   }
-            } catch (error) {
-                  console.log(error);
-            }
-      }, []);
+            },
+            [setError],
+      );
 
       const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
             setSearchTerm(e.target.value);
@@ -55,26 +67,33 @@ const Home: React.FC = () => {
 
       //Fetch movies initial
       useEffect(() => {
-            if (searchTerm.length > 2) fetchMovies(searchTerm, 1);
-            if (searchTerm.length <= 2) setMovies(initialState);
-      }, [fetchMovies, searchTerm]);
+            if (debouncedSearch.length > 2) fetchMovies(debouncedSearch, 1);
+            if (debouncedSearch.length <= 2) setMovies(initialState);
+      }, [fetchMovies, searchTerm, setError, debouncedSearch]);
 
       //Fetch more movies
-      useEffect(() => {
-            if (!isLoadingMore) return;
-
-            fetchMovies(searchTerm, page + 1);
+      //Load more movies
+      const handleLoadMore = () => {
+            setIsLoadingMore(true);
+            fetchMovies(debouncedSearch, page + 1);
             setPage(page + 1);
             setIsLoadingMore(false);
-      }, [fetchMovies, searchTerm, isLoadingMore, page, setPage]);
+      };
+      /* useEffect(() => {
+            if (!isLoadingMore) return;
+            setError("");
+            fetchMovies(debouncedSearch, page + 1);
+            setPage(page + 1);
+            setIsLoadingMore(false);
+      }, [fetchMovies, isLoadingMore, page, setPage, setError, debouncedSearch]); */
 
       return (
             <Wrapper>
-                  <Background isFull={movies.Search && movies.Search.length > 0 ? false : true} image={image}>
+                  <Background isFull={debouncedSearch.length > 2 || error !== "" ? false : true} image={image}>
                         <input type="text" value={searchTerm} onChange={handleSearch} placeholder="Search movies..." />
                   </Background>
                   {error ? (
-                        <h3>No movies found</h3>
+                        <h3>{error}</h3>
                   ) : (
                         <Grid>
                               {movies.Search.map((movie) => {
@@ -82,7 +101,7 @@ const Home: React.FC = () => {
                               })}
                         </Grid>
                   )}
-                  {isLoadingMore ? <Spinner /> : movies.Search.length < movies.totalResults && error === "" ? <LoadMore onClick={() => setIsLoadingMore(true)}>Load More</LoadMore> : null}
+                  {isLoadingMore ? <Spinner /> : movies.Search.length < movies.totalResults && error === "" ? <LoadMore onClick={handleLoadMore}>Load More</LoadMore> : null}
             </Wrapper>
       );
 };

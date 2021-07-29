@@ -8,25 +8,32 @@ export enum Plot {
 
 const apiSettings = {
       fetchMovies: async (searchTerm: string, page: number): Promise<Movies> => {
-            const { data } = await moviesInstance.get("/", {
-                  params: {
-                        s: searchTerm,
-                        page,
-                  },
-            });
-
-            return data;
+            try {
+                  const { data } = await moviesInstance.get("/", {
+                        params: {
+                              s: searchTerm,
+                              page,
+                        },
+                  });
+                  return data;
+            } catch (err) {
+                  throw new Error(err.message);
+            }
       },
 
       fetchMovie: async (imdbID: string, plot: Plot = Plot.Full): Promise<MovieDetails> => {
-            const { data } = await moviesInstance.get("/", {
-                  params: {
-                        i: imdbID,
-                        plot,
-                  },
-            });
+            try {
+                  const { data } = await moviesInstance.get("/", {
+                        params: {
+                              i: imdbID,
+                              plot,
+                        },
+                  });
 
-            return data;
+                  return data;
+            } catch (err) {
+                  throw new Error(err.message);
+            }
       },
 };
 

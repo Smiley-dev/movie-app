@@ -2,12 +2,13 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div`
       position: relative;
+      width: 90%;
+
+      max-width: var(--maxWidth);
 `;
 
 export const Image = styled.img`
-      max-width: 720px;
       height: 100%;
-      width: 100%;
       transition: all 0.3s;
       object-fit: cover;
       border-radius: 20px;

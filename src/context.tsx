@@ -11,17 +11,21 @@ type AppCotextProps = {
       removeMovie: (imdbID: string) => void;
       checkIfMovieIsInMyList: (imdbID: string | undefined) => boolean;
       myList: MovieDetails[];
+      error: string;
+      setError: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export const AppContext = createContext<AppCotextProps>({
       isModalOpened: false,
       selectedMovie: "",
+      error: "",
 } as AppCotextProps);
 
 const AppProvider: React.FC = ({ children }) => {
       const [isModalOpened, setIsModalOpened] = useState(false);
       const [selectedMovie, setSelectedMovie] = useState("");
       const [myList, setMyList] = useState<MovieDetails[]>([]);
+      const [error, setError] = useState("");
 
       //Add movie to my list
       const addMovie = (movie: MovieDetails) => {
@@ -53,6 +57,8 @@ const AppProvider: React.FC = ({ children }) => {
                         removeMovie,
                         checkIfMovieIsInMyList,
                         myList,
+                        error,
+                        setError,
                   }}
             >
                   {children}
