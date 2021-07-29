@@ -23,4 +23,4 @@ In order to run this project locally you need to have [Node.js](https://nodejs.o
       ```
 2. Create free API key from [Open Movie Database](https://www.omdbapi.com/)
 3. In root directory create a .env.local file and paste your API key (see the .env.local.example file)
-4. In terminal run `shell npm start`
+4. In terminal run `npm start`
