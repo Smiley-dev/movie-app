@@ -55,7 +55,6 @@ const Movie: React.FC = () => {
 
       useEffect(() => {
             fetchMovie();
-            console.log(movie?.Poster);
       }, [fetchMovie, selectedMovie]);
 
       return loading ? (

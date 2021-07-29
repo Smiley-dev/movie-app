@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext } from "react";
 import { BsStarFill } from "react-icons/bs";
 import { AppContext } from "../../context";
 import { Movie, MovieDetails } from "../../types";
