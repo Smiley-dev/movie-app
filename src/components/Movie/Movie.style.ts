@@ -2,12 +2,20 @@ import styled from "styled-components";
 
 export const Content = styled.div`
       display: flex;
+      flex-direction: column;
       position: relative;
       max-width: var(--maxWidth);
-      width: 90%;
+      width: 50%;
+      min-width: 700px;
       margin: 0 auto;
       background: rgba(0, 0, 0, 0.7);
       border-radius: 20px;
+      padding-bottom: 20px;
+      color: var(--lightGrey);
+
+      .poster {
+            width: 100%;
+      }
 
       @media screen and (max-width: 768px) {
             display: block;
@@ -16,8 +24,16 @@ export const Content = styled.div`
 
       .close-modal {
             position: absolute;
+            display: flex;
+            height: 30px;
+            width: 30px;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--red);
+            padding: 5px;
+            border-radius: 50%;
             top: 20px;
-            right: 50px;
+            right: 30px;
             font-weight: bolder;
             color: var(--red);
       }
@@ -27,11 +43,18 @@ export const Content = styled.div`
       }
 `;
 
+export const Header = styled.div`
+      margin-left: 20px;
+      margin-bottom: 20px;
+      max-width: 80%;
+      h1 {
+            margin-bottom: 5px;
+      }
+`;
+
 export const Info = styled.div`
       width: 100%;
       padding: 20px 40px;
-      color: var(--white);
-      overflow: hidden;
 
       .rating-directors {
             display: flex;
@@ -42,8 +65,13 @@ export const Info = styled.div`
             display: flex;
       }
 
+      .detail {
+            font-size: 1rem;
+            margin-left: 10px;
+            font-weight: normal;
+      }
+
       .ratings {
-            margin-left: 100px;
             display: flex;
             flex-direction: column;
             justify-content: center;

@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import image from "../../assets/images/movies_background.jpg";
 import { AppContext } from "../../context";
 
-import Grid from "../Grid/Grid";
 import Thumb from "../Thumb/Thumb";
 import Background from "../Background/Background";
 
@@ -15,11 +14,9 @@ const MyList: React.FC = () => {
                   <Background isFull={myList.length > 0 ? false : true} image={image}></Background>
                   {myList.length > 0 && (
                         <Wrapper>
-                              <Grid>
-                                    {myList.map((movie) => (
-                                          <Thumb key={movie.imdbID} poster={movie.Poster} imdbID={movie.imdbID} isFavorit={false}></Thumb>
-                                    ))}
-                              </Grid>
+                              {myList.map((movie) => (
+                                    <Thumb key={movie.imdbID} movie={movie}></Thumb>
+                              ))}
                         </Wrapper>
                   )}
             </>

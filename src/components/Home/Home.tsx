@@ -11,14 +11,13 @@ import { useDebounce } from "../../hooks";
 import { Movies, Movie } from "../../types";
 
 //Components
-import Grid from "../Grid/Grid";
+
 import Thumb from "../Thumb/Thumb";
 import Background from "../Background/Background";
 
 //Styles
-import { Wrapper, LoadMore } from "./Home.style";
+import { Wrapper, Pages } from "./Home.style";
 import image from "../../assets/images/movies_background.jpg";
-import Spinner from "../Spinner/Spinner";
 
 const initialState = {
       page: 0,
@@ -31,7 +30,6 @@ const initialState = {
 const Home: React.FC = () => {
       const [movies, setMovies] = useState<Movies>(initialState);
       const [searchTerm, setSearchTerm] = useState<string>("");
-      const [isLoadingMore, setIsLoadingMore] = useState(false);
       const [page, setPage] = useState(1);
       const { error, setError } = useContext(AppContext);
 
@@ -42,13 +40,9 @@ const Home: React.FC = () => {
                   try {
                         const movies = await API.fetchMovies(search, page);
                         if (movies.Response === "True") {
-                              setMovies((prevState) => ({
-                                    ...movies,
-                                    Search: page > 1 ? [...prevState.Search, ...movies.Search] : [...movies.Search],
-                              }));
+                              setMovies(movies);
                               setError("");
                         } else {
-                              console.log(movies.Error);
                               setError(movies.Error);
                               setMovies(initialState);
                         }
@@ -73,19 +67,23 @@ const Home: React.FC = () => {
 
       //Fetch more movies
       //Load more movies
-      const handleLoadMore = () => {
-            setIsLoadingMore(true);
+      const handleNextPage = () => {
             fetchMovies(debouncedSearch, page + 1);
             setPage(page + 1);
-            setIsLoadingMore(false);
+            window.scrollTo({
+                  top: 0,
+                  behavior: "smooth",
+            });
       };
-      /* useEffect(() => {
-            if (!isLoadingMore) return;
-            setError("");
-            fetchMovies(debouncedSearch, page + 1);
-            setPage(page + 1);
-            setIsLoadingMore(false);
-      }, [fetchMovies, isLoadingMore, page, setPage, setError, debouncedSearch]); */
+
+      const handlePrevPage = () => {
+            fetchMovies(debouncedSearch, page - 1);
+            setPage(page - 1);
+            window.scrollTo({
+                  top: 0,
+                  behavior: "smooth",
+            });
+      };
 
       return (
             <Wrapper>
@@ -95,13 +93,17 @@ const Home: React.FC = () => {
                   {error ? (
                         <h3>{error}</h3>
                   ) : (
-                        <Grid>
-                              {movies.Search.map((movie) => {
-                                    return <Thumb key={movie.imdbID} poster={movie.Poster} isFavorit={false} imdbID={movie.imdbID} />;
-                              })}
-                        </Grid>
+                        movies.Search.map((movie) => {
+                              return <Thumb key={movie.imdbID} movie={movie} />;
+                        })
                   )}
-                  {isLoadingMore ? <Spinner /> : movies.Search.length < movies.totalResults && error === "" ? <LoadMore onClick={handleLoadMore}>Load More</LoadMore> : null}
+                  {movies.Search.length > 0 ? (
+                        <Pages>
+                              {page > 1 && <button onClick={handlePrevPage}>Back</button>}
+                              <div></div>
+                              <button onClick={handleNextPage}>Next</button>
+                        </Pages>
+                  ) : null}
             </Wrapper>
       );
 };

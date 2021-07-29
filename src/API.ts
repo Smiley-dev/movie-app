@@ -21,7 +21,7 @@ const apiSettings = {
             }
       },
 
-      fetchMovie: async (imdbID: string, plot: Plot = Plot.Full): Promise<MovieDetails> => {
+      fetchMovie: async (imdbID: string, plot: Plot = Plot.Short): Promise<MovieDetails> => {
             try {
                   const { data } = await moviesInstance.get("/", {
                         params: {

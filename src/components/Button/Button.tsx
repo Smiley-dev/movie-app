@@ -12,17 +12,24 @@ type Props = {
 const Button: React.FC<Props> = ({ movie }) => {
       const { addMovie, removeMovie, checkIfMovieIsInMyList, setIsModalOpened } = useContext(AppContext);
 
-      const handleAddOrRemove = () => {
+      const handleAddOrRemove = (e: any) => {
             if (!checkIfMovieIsInMyList(movie?.imdbID)) {
                   if (movie) addMovie(movie);
             } else {
                   if (movie) removeMovie(movie.imdbID);
             }
+
             setIsModalOpened(false);
       };
 
       return (
-            <Wrapper onClick={handleAddOrRemove} isFavorite={checkIfMovieIsInMyList(movie?.imdbID)}>
+            <Wrapper
+                  onClick={(e) => {
+                        e.stopPropagation();
+                        handleAddOrRemove(e);
+                  }}
+                  isFavorite={checkIfMovieIsInMyList(movie?.imdbID)}
+            >
                   {checkIfMovieIsInMyList(movie?.imdbID) ? "Remove from my list" : "Add to my list"}
             </Wrapper>
       );

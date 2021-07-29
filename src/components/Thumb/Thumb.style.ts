@@ -3,12 +3,33 @@ import styled from "styled-components";
 export const Wrapper = styled.div`
       position: relative;
       width: 90%;
-
+      margin: 20px auto;
       max-width: var(--maxWidth);
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 20px;
+      display: flex;
+      color: var(--lightGrey);
+
+      :hover {
+            background: rgba(0, 0, 0, 0.4);
+            cursor: pointer;
+      }
+`;
+
+export const Info = styled.div`
+      margin-left: 20px;
+      color: var(--lightGrey);
+      h1 {
+            font-size: 30px;
+      }
+
+      h3 {
+            font-size: 20px;
+      }
 `;
 
 export const Image = styled.img`
-      height: 100%;
+      height: 200px;
       transition: all 0.3s;
       object-fit: cover;
       border-radius: 20px;
@@ -31,8 +52,8 @@ export const Image = styled.img`
 
 export const Star = styled.div`
       position: absolute;
-      bottom: 10px;
-      right: 10px;
+      bottom: 0;
+      right: 20px;
       height: 50px;
       z-index: 100;
 `;

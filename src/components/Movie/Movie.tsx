@@ -12,7 +12,7 @@ import { MovieDetails } from "../../types";
 import Button from "../Button/Button";
 
 //Styles
-import { Content, Info } from "./Movie.style";
+import { Content, Info, Header } from "./Movie.style";
 
 //Icons
 import rottenIcon from "../../assets/icons/rottenLogo.png";
@@ -61,18 +61,34 @@ const Movie: React.FC = () => {
             <Spinner></Spinner>
       ) : (
             <Content ref={ref as any}>
-                  <img src={movie?.Poster} alt="Movie poster" />
-                  <Info>
+                  <Header>
                         <h1>{movie?.Title}</h1>
+                        <div className="close-modal" onClick={() => setIsModalOpened(false)}>
+                              X
+                        </div>
+                        <p>{movie?.Year}</p>
+                  </Header>
+                  <img className="poster" src={movie?.Poster} alt="Movie poster" />
+                  <Info>
+                        <h3>
+                              Released: <span className="detail">{movie?.Released}</span>
+                        </h3>
+
+                        <h3>
+                              Genre: <span className="detail">{movie?.Genre}</span>
+                        </h3>
+
                         <h3>PLOT</h3>
                         <p>{movie?.Plot}</p>
+                        <h3>
+                              Director: <span className="detail">{movie?.Director}</span>
+                        </h3>
+
+                        <h3>
+                              Actors: <span className="detail">{movie?.Actors}</span>
+                        </h3>
+
                         <div className="details">
-                              <div>
-                                    <h3>Director</h3>
-                                    <p>{movie?.Director}</p>
-                                    <h3>Actors</h3>
-                                    <p>{movie?.Actors}</p>
-                              </div>
                               {movie?.Ratings.length === 0 ? null : (
                                     <div className="ratings">
                                           <h3>Ratings</h3>
@@ -107,7 +123,6 @@ const Movie: React.FC = () => {
                               )}
                         </div>
                         <Button movie={movie!}></Button>
-                        <div className="close-modal">X</div>
                   </Info>
             </Content>
       );

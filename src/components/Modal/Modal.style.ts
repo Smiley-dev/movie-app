@@ -16,4 +16,9 @@ export const Wrapper = styled.div`
 export const Content = styled.div`
       max-height: calc(100vh - 100px);
       overflow-y: auto;
+      ::-webkit-scrollbar {
+            width: 0 !important;
+      }
+      overflow: -moz-scrollbars-none;
+      -ms-overflow-style: none;
 `;

@@ -1,31 +1,40 @@
-import React, { useContext } from "react";
-import { BsStarFill, BsStar } from "react-icons/bs";
+import React, { useContext, useRef } from "react";
+import { BsStarFill } from "react-icons/bs";
 import { AppContext } from "../../context";
+import { Movie, MovieDetails } from "../../types";
+import { useLocation } from "react-router";
+import Button from "../Button/Button";
 
-import { Image, Star, Wrapper } from "./Thumb.style";
+import { Image, Star, Wrapper, Info } from "./Thumb.style";
 
 type Props = {
-      poster: string;
-      isFavorit: boolean;
-      imdbID: string;
+      movie: Movie | MovieDetails;
 };
 
-const Thumb: React.FC<Props> = ({ poster, imdbID }) => {
+const Thumb: React.FC<Props> = ({ movie }) => {
       const { setIsModalOpened, setSelectedMovie, checkIfMovieIsInMyList } = useContext(AppContext);
+      const location = useLocation();
 
       const handleClick = () => {
-            setSelectedMovie(imdbID);
+            setSelectedMovie(movie.imdbID);
             setIsModalOpened(true);
       };
+
       return (
             <Wrapper onClick={handleClick}>
-                  {checkIfMovieIsInMyList(imdbID) ? (
+                  {checkIfMovieIsInMyList(movie.imdbID) && location.pathname === "/" ? (
                         <Star>
-                              <BsStarFill fill="#e50914" size="35px"></BsStarFill>
+                              <BsStarFill fill="#fce301" size="30px"></BsStarFill>
                         </Star>
+                  ) : location.pathname === "/my-list" ? (
+                        <Button movie={movie as MovieDetails}></Button>
                   ) : null}
 
-                  <Image src={poster} alt="movie-thumb"></Image>
+                  <Image src={movie.Poster} alt="movie-thumb"></Image>
+                  <Info>
+                        <h1>{movie.Title}</h1>
+                        <h3>{movie.Year}</h3>
+                  </Info>
             </Wrapper>
       );
 };
