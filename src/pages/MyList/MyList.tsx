@@ -5,8 +5,8 @@ import image from "../../assets/images/movies_background.jpg";
 import { AppContext } from "../../context";
 
 //Components
-import Thumb from "../Thumb/Thumb";
-import Background from "../Background/Background";
+import Thumb from "../../components/Thumb/Thumb";
+import Background from "../../components/Background/Background";
 
 //Styles
 import { Wrapper } from "./MyList.style";

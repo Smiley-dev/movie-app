@@ -7,8 +7,8 @@ import { GlobalStyle } from "./GlobalStyle";
 import AppProvider from "./context";
 
 //Components
-import Search from "./components/Search/Search";
-import MyList from "./components/MyList/MyList";
+import Search from "./pages/Search/Search";
+import MyList from "./pages/MyList/MyList";
 import Movie from "./components/Movie/Movie";
 import Navbar from "./components/Navbar/Navbar";
 import Modal from "./components/Modal/Modal";

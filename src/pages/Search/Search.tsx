@@ -13,8 +13,8 @@ import { useDebounce } from "../../hooks";
 import { Movies, Movie } from "../../types";
 
 //Components
-import Thumb from "../Thumb/Thumb";
-import Background from "../Background/Background";
+import Thumb from "../../components/Thumb/Thumb";
+import Background from "../../components/Background/Background";
 
 //Styles
 import { Wrapper, Pages } from "./Search.style";
