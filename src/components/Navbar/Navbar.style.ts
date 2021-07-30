@@ -12,7 +12,7 @@ export const Wrapper = styled.div`
 export const Content = styled.div`
       display: flex;
       height: 100%;
-
+      margin: 10px;
       a {
             width: 50%;
             text-align: center;

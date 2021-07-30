@@ -96,7 +96,7 @@ export const Info = styled.div`
             margin-bottom: 20px;
       }
 
-      @media screen and (max-width: 800px) {
+      @media screen and (max-width: 700px) {
             h3 {
                   font-size: 17px;
             }
