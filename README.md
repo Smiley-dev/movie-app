@@ -17,8 +17,8 @@ In order to run this project locally you need to have [Node.js](https://nodejs.o
 
 1. Download the project and install dependencies
       ```shell
-      git clone https://github.com/Smiley-dev/bay42-test-assignment
-      cd bay42-test-assignment/
+      git clone https://github.com/Smiley-dev/movie-app
+      cd movie-app/
       npm install
       ```
 2. Create free API key from [Open Movie Database](https://www.omdbapi.com/)
